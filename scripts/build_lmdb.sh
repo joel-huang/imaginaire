@@ -1,9 +1,9 @@
 MODEL=$1
 DATASET=$2
 
-for SPLIT in test train; do
-  RAW=dataset/${DATASET}_raw/${SPLIT}
+for SPLIT in train val; do
+  RAW=/mnt/disks/datasets/data/cfunit/
   LMDB=dataset/${DATASET}/${SPLIT}
   echo ${LMDB}
-  python scripts/build_lmdb.py --config configs/projects/${MODEL}/${DATASET}/ampO1.yaml --data_root ${RAW} --output_root ${LMDB} --overwrite
+  python scripts/build_lmdb.py --config configs/projects/${MODEL}/${DATASET}/config.yaml --data_root ${RAW}/${SPLIT} --output_root ${LMDB} --overwrite
 done
